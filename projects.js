@@ -1,7 +1,7 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-import { fetchJSON, renderProjects } from 'global.js';
+import { fetchJSON, renderProjects } from './global.js';
 //data in lib
-const projects = await fetchJSON('lib/projects.json');
+const projects = await fetchJSON('../lib/projects.json');
 const container = document.querySelector('.projects');
 
 renderProjects(projects, container, 'h2');
@@ -22,6 +22,10 @@ let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
 let svg = d3.select('#projects-pie-plot');
+
+let query = '';
+let selectedIndex = -1;
+
 
 arcs.forEach((arc, idx) => {
   svg
@@ -72,7 +76,7 @@ data.forEach((d, idx) => {
 });
 
 
-let query = '';
+
 
 
 let searchInput = document.querySelector('.searchBar');
@@ -88,6 +92,5 @@ searchInput.addEventListener('change', (event) => {
 });
 
 
-let selectedIndex = -1;
 
 
