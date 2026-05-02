@@ -2,7 +2,7 @@
 import { fetchJSON, renderProjects, fetchGitHubData} from '../global.js';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
-const projects = await fetchJSON('../lib/projects.json');
+const projects = await fetchJSON('./lib/projects.json');
 const latestProjects = projects.slice(0, 3);
 const container = document.querySelector('.projects');
 
