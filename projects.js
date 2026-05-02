@@ -81,6 +81,9 @@ data.forEach((d, idx) => {
 
 let searchInput = document.querySelector('.searchBar');
 
+
+
+
 searchInput.addEventListener('change', (event) => {
   // update query value
   query = event.target.value;
