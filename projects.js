@@ -71,7 +71,7 @@ data.forEach((d, idx) => {
   legend
     .append('li')
     .attr('style', `--color:${colors(idx)}`)
-    .attr('class', (_, idx) => selectedIndex === idx ? 'selected' : '')
+    .attr('class', (_, idx) => selectedIndex === idx ? 'legend-item selected' : 'legend-item')
     .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
 });
 
@@ -82,18 +82,21 @@ data.forEach((d, idx) => {
 let searchInput = document.querySelector('.searchBar');
 
 
-
-
-searchInput.addEventListener('change', (event) => {
-  // update query value
+searchInput.addEventListener('input', (event) => {
   query = event.target.value;
+
   let filteredProjects = projects.filter((project) => {
     let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
+
+    let matchesSearch = values.includes(query.toLowerCase());
+
+    let matchesYear =
+      selectedIndex === -1 || project.year === data[selectedIndex].label;
+
+    return matchesSearch && matchesYear;
   });
+
   renderProjects(filteredProjects, container, 'h2');
 });
-
-
 
 
