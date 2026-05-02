@@ -66,7 +66,7 @@ arcs.forEach((arc, idx) => {
     });
 });
 
-
+console.log(data);
 data.forEach((d, idx) => {
   legend
     .append('li')
